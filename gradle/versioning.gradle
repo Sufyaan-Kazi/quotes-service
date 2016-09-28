@@ -5,12 +5,11 @@ version = new ProjectVersion()
 class ProjectVersion {
 	String build
 	ProjectVersion() {
-                def file = new File('version/number')
-                if(file.exists()) {
-                   this.build = file.text.trim()
-                } else {
-                    this.build = "0.4.0"
-                }
+	        if (project.hasProperty('buildversion')) { 
+		   project.version = project.buildversion 
+	        } else { 
+		    project.version = '0.4.0'
+	        } 
 	}
 	@Override
 	String toString() {
